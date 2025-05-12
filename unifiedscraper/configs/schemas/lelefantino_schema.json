@@ -1,0 +1,22 @@
+{
+  "brands_urls_schema" : "ul.li-brands li a::attr(href)",
+  "products_urls_schema" : "div.product-list div.image-cont a.product-link::attr(href)",
+  "pagination_schema" : "body button.usf-load-more",
+  "product_page_schema": {
+        "Brand": "div.vendor a",
+        "ProductName": "h1.title",
+        "ProductImage": "div.rimage-wrapper img::attr(srcset)",
+        "Category": "div.description",
+        "ProductColor": "div.product-custom-variant > span:nth-child(4)",
+        "StockStatus": "span.productlabel",
+        "CurrentPrice": "div.price-area span.current-price",
+        "OriginalPrice": "div.price-area span.was-price",
+        "AvailableSizes": "ul.clickyboxes li",
+        "Description": "div.description",
+        "WebsiteProductCode": "div.detail.product-column-right.gallery-layout-beside > span > span",
+        "sku": "div.detail.product-column-right.gallery-layout-beside > span > span.custom-data",
+        "ProductNote": "div.product-custom-variant > g",
+        "RelatedCategory": "div.detail.product-column-right span a",
+        "OtherColorsURLs": "div.product-custom-variant li:not(.current-custom-variant) a::attr(href)"
+    }
+}

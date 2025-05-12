@@ -1,0 +1,26 @@
+{
+  "wardow": {
+    "base_url": "https://www.wardow.com",
+    "brands_url": "/en/brands/",
+    "pagination_type": "next_page_button",
+    "schema_path": "configs/schemas/wardow_schema.json",
+    "scraper_class": "WardowScraper"
+  },
+  "lelefantino": {
+    "base_url": "https://lelefantino-store.com",
+    "brands_url": "/pages/brand",
+    "pagination_type": "load_more_button",
+    "load_more_query": "?usf_take=",
+    "load_more_offset": 24,
+    "playwright": true,
+    "schema_path": "configs/schemas/lelefantino_schema.json",
+    "scraper_class": "LelefantinoScraper"
+  },
+  "pellecchia": {
+        "base_url": "https://www.pellecchia.it/",
+        "brands_url": "/it/tutti/designers",
+        "pagination_type": "next_page_button",
+        "schema_path": "configs/schemas/pellecchia_schema.json",
+        "scraper_class": "PellecchiaScraper"
+    }
+}
