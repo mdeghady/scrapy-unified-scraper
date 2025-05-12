@@ -20,6 +20,19 @@ NEWSPIDER_MODULE = "unifiedscraper.spiders"
 
 ADDONS = {}
 
+FEEDS = {
+    'output/%(name)s_data.csv': {
+        'format': 'csv',
+        'encoding': 'utf-8-sig',
+        'overwrite': True,
+        'fields': None,
+        'item_export_kwargs': {
+                    'export_empty_fields': True,
+                },
+    }
+}
+
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "unifiedscraper (+http://www.yourdomain.com)"
