@@ -28,6 +28,7 @@ class GocciaMen(NextPageScraper, DataCleanser):
         else:
             product['CurrentPrice'] = response.css(product_schema['CurrentPrice']).get()
             product['OriginalPrice'] = response.css(product_schema['OldPrice']).get()
-        product["PriceCurrency"] = self._convert_currency_symbols_to_code(product['CurrentPrice'])
+        product["PriceCurrency"] = self._convert_currency_symbols_to_code(
+            response.css(product_schema['PriceCurrency']).get())
 
         yield product

@@ -9,6 +9,7 @@
               "NoDiscountPrice": "p.price bdi::text",
               "CurrentPrice": "p.price ins::text",
               "OldPrice": "p.price del",
+              "PriceCurrency": "p.price span.woocommerce-Price-currencySymbol::text",
               "ProductColor" : "div.colore ul.products li:has(> picture:first-child)::text",
               "sku": "div.product_meta span.sku::text",
               "AvailableSizes": "select#taglia option.attached.enabled::text",
