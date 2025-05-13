@@ -38,9 +38,9 @@ class TendenzeSpider(NextPageScraper,DataCleanser):
             product['CurrentPrice'] = response.css(product_schema['PriceNoDiscount']).get()
             product["OriginalPrice"] = response.css(product_schema['PriceNoDiscount']).get()
         product["PriceCurrency"] = self._convert_currency_symbols_to_code(product['CurrentPrice'])
-        product['OriginalPrice'] = float(re.search(r'[\d,]+', product['OriginalPrice'].replace(",","")).group()
+        product['OriginalPrice'] = float(re.search(r'[\d,]+', product['OriginalPrice'].replace(".","")).group()
                                          .replace(',', ''))
-        product['CurrentPrice'] = float(re.search(r'[\d,]+', product['CurrentPrice'].replace(",","")).group()
+        product['CurrentPrice'] = float(re.search(r'[\d,]+', product['CurrentPrice'].replace(".","")).group()
                                          .replace(',', ''))
 
         yield product
