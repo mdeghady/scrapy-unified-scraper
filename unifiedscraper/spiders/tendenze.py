@@ -1,8 +1,8 @@
 import re
 
-from .base_scraper import NextPageScraper
+from .base_scraper import NextPageScraper , DataCleanser
 
-class TendenzeSpider(NextPageScraper):
+class TendenzeSpider(NextPageScraper,DataCleanser):
     """Spider for Tendenze store"""
     name = "tendenze"
     allowed_domains = ["tendenzestore.com"]
@@ -29,5 +29,8 @@ class TendenzeSpider(NextPageScraper):
         sku_splitted = product["sku"].split("/")
         product['ProductCode'] = sku_splitted[0]
         product['ProductColor'] = sku_splitted[1] if len(sku_splitted) > 1 else ""
+        product["PriceCurrency"] = self._convert_currency_symbols_to_code(product['CurrentPrice'])
+        product['OriginalPrice'] = float(re.search(r'[\d,]+', product['OriginalPrice'].replace(".","")).group().replace(',', ''))
+        product['CurrentPrice'] = float(re.search(r'[\d,]+', product['CurrentPrice'].replace(".","")).group().replace(',', ''))
 
         yield product
