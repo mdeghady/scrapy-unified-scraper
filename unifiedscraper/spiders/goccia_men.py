@@ -18,7 +18,7 @@ class GocciaMen(NextPageScraper, DataCleanser):
         "AvailableSizes": response.css(product_schema['AvailableSizes']).getall(),
         "Category": response.css(product_schema['Category']).get(),
         "sku": response.css(product_schema['sku']).get(),
-        "ProductUrl": response.url,
+        "ProductURL": response.url,
         }
         # Clean the product data
         no_discount_price = response.css(product_schema['NoDiscountPrice']).get()

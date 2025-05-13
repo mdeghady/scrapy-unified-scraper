@@ -37,5 +37,11 @@
         "brands_url": "/brand-uomo/",
         "pagination_type": "next_page_button",
         "schema_path": "configs/schemas/goccia_schema.json"
-    }
+  },
+  "goccia-women": {
+        "base_url": "https://goccia.shop/",
+        "brands_url": "/brand-donna/",
+        "pagination_type": "next_page_button",
+        "schema_path": "configs/schemas/goccia_schema.json"
+  }
 }
