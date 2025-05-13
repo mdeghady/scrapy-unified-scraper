@@ -25,5 +25,11 @@
         "brands_url": "/brand.html",
         "pagination_type": "next_page_button",
         "schema_path": "configs/schemas/tendenze_schema.json"
-  }
+  },
+  "grs": {
+        "base_url": "https://grsboutique.com/",
+        "brands_url": "",
+        "pagination_type": "next_page_button",
+        "schema_path": "configs/schemas/grs_schema.json"
+    }
 }
