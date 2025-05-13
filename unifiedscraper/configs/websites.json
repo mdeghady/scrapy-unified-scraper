@@ -3,8 +3,7 @@
     "base_url": "https://www.wardow.com",
     "brands_url": "/en/brands/",
     "pagination_type": "next_page_button",
-    "schema_path": "configs/schemas/wardow_schema.json",
-    "scraper_class": "WardowScraper"
+    "schema_path": "configs/schemas/wardow_schema.json"
   },
   "lelefantino": {
     "base_url": "https://lelefantino-store.com",
@@ -13,14 +12,18 @@
     "load_more_query": "?usf_take=",
     "load_more_offset": 24,
     "playwright": true,
-    "schema_path": "configs/schemas/lelefantino_schema.json",
-    "scraper_class": "LelefantinoScraper"
+    "schema_path": "configs/schemas/lelefantino_schema.json"
   },
   "pellecchia": {
         "base_url": "https://www.pellecchia.it/",
         "brands_url": "/it/tutti/designers",
         "pagination_type": "next_page_button",
-        "schema_path": "configs/schemas/pellecchia_schema.json",
-        "scraper_class": "PellecchiaScraper"
-    }
+        "schema_path": "configs/schemas/pellecchia_schema.json"
+  },
+  "tendenze": {
+        "base_url": "https://www.tendenzestore.com/en/",
+        "brands_url": "/brand.html",
+        "pagination_type": "next_page_button",
+        "schema_path": "configs/schemas/tendenze_schema.json"
+  }
 }
