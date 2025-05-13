@@ -1,0 +1,16 @@
+{
+    "brands_urls_schema" :  "div.item div a::attr(href)",
+    "products_urls_schema" : "div.contfoto div.cotienifoto a::attr(href)",
+    "pagination_schema" : "li.pagine.invisibile + li.pagine a::attr(href)",
+    "product_page_schema" : {
+    "Brand": "body div#bloccoh1 h2 a::text",
+    "ProductName": "body div.codicearticolo::text",
+    "ProductImage": "body div.swiper-slide a::attr(href)",
+    "Category": "body div#bloccoh1 a h2::text",
+    "CurrentPrice": "body div#prezzidettaglioprezzo span.saldi2::text",
+    "OldPrice": "body div#prezzidettaglioprezzo span.saldi::text",
+    "AvailableSizes.option1": "body div.bloccodett div.taglia::text",
+    "AvailableSizes.option2": "body div.bloccodett select#tagliaopz option[data-idt]::text",
+    "sku": "div.last div.dettagliarticolo div.codicearticolo h3 i::text"
+  }
+}
