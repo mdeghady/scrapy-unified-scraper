@@ -4,7 +4,7 @@
     "pagination_schema" : "li.pagine.invisibile + li.pagine a::attr(href)",
     "product_page_schema" : {
     "Brand": "body div#bloccoh1 h2 a::text",
-    "ProductName": "body div.codicearticolo::text",
+    "ProductName": "body div#bloccoh1 a h2::text",
     "ProductImage": "body div.swiper-slide a::attr(href)",
     "Category": "body div#bloccoh1 a h2::text",
     "CurrentPrice": "body div#prezzidettaglioprezzo span.saldi2::text",
