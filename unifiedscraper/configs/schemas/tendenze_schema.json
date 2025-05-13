@@ -7,6 +7,7 @@
     "ProductName": "body div#bloccoh1 a h2::text",
     "ProductImage": "body div.swiper-slide a::attr(href)",
     "Category": "body div#bloccoh1 a h2::text",
+    "PriceNoDiscount": "body div#prezzidettaglioprezzo span.pscala::text",
     "CurrentPrice": "body div#prezzidettaglioprezzo span.saldi2::text",
     "OldPrice": "body div#prezzidettaglioprezzo span.saldi::text",
     "AvailableSizes.option1": "body div.bloccodett div.taglia::text",
