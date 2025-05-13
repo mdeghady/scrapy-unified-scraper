@@ -19,6 +19,8 @@ class TendenzeSpider(NextPageScraper,DataCleanser):
             "ProductURL": response.url,
         }
 
+        product["ProductImage"] = self.make_absolute_url(product["ProductImage"])
+
         available_sizes = response.css(product_schema['AvailableSizes.option1']).getall()
         if not available_sizes:
             available_sizes = response.css(product_schema['AvailableSizes.option2']).getall()
