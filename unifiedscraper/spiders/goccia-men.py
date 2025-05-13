@@ -17,7 +17,6 @@ class GocciaMen(NextPageScraper, DataCleanser):
         "ProductImage": response.css(product_schema['ProductImage']).get(),
         "AvailableSizes": response.css(product_schema['AvailableSizes']).getall(),
         "Category": response.css(product_schema['Category']).get(),
-        "Collection": response.css(product_schema['Collection']).get(),
         "sku": response.css(product_schema['sku']).get(),
         "ProductUrl": response.url,
         }
@@ -31,6 +30,11 @@ class GocciaMen(NextPageScraper, DataCleanser):
             product['OriginalPrice'] = response.css(product_schema['OldPrice']).get()
         product["PriceCurrency"] = self._convert_currency_symbols_to_code(
             response.css(product_schema['PriceCurrency']).get())
+        product['OriginalPrice'] = float(
+            re.search(r'[\d,]+', product['OriginalPrice']).group().replace(",", "."))
+        product['CurrentPrice'] = float(
+            re.search(r'[\d,]+', product['CurrentPrice']).group().replace(",", "."))
+
         sku_splitted = product['sku'].split('-')
         product["ProductCode"] = sku_splitted[0]
         product["Color"] = sku_splitted[1] if len(sku_splitted) > 1 else None
