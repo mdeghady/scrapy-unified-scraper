@@ -1,0 +1,18 @@
+{
+    "brands_urls_schema" : "div.elementor-toggle-item ul.list-group li.list-group-item a::attr(href)",
+    "products_urls_schema" : "ul.products li div.product-inner a.woocommerce-LoopProduct-link::attr(href)",
+    "pagination_schema" : "nav.woocommerce-pagination ul li:last-child a::attr(href)",
+
+    "product_page_schema" : {
+              "Brand" : "div.summary p.brand_product::text",
+              "ProductName": "h1.product_title::text",
+              "CurrentPrice": ["p.price ins::text" , "p.price bdi::text"],
+              "OldPrice": "p.price del",
+              "ProductColor" : "div.colore ul.products li:has(> picture:first-child)::text",
+              "sku": "div.product_meta span.sku::text",
+              "AvailableSizes": "select#taglia option.attached.enabled::text",
+              "Collection": "li.woocommerce-product-attributes-item--attribute_pa_collezione span.woocommerce-product-attributes-item__value::text",
+              "Category": "div.site-breadcrumbs a:nth-child(5)::text"
+    }
+
+}

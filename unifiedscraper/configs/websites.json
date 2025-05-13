@@ -31,5 +31,11 @@
         "brands_url": "",
         "pagination_type": "next_page_button",
         "schema_path": "configs/schemas/grs_schema.json"
+  },
+  "goccia-men": {
+        "base_url": "https://goccia.shop/",
+        "brands_url": "/brand-uomo/",
+        "pagination_type": "next_page_button",
+        "schema_path": "configs/schemas/goccia_schema.json"
     }
 }
