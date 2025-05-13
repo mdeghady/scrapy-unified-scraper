@@ -15,8 +15,6 @@ class TendenzeSpider(NextPageScraper,DataCleanser):
             "ProductName": response.css(product_schema['ProductName']).get(),
             "ProductImage": response.css(product_schema['ProductImage']).get(),
             "sku": response.css(product_schema['sku']).get(),
-            "CurrentPrice": response.css(product_schema['CurrentPrice']).get(),
-            "OriginalPrice": response.css(product_schema['OldPrice']).get(),
             "Category": response.css(product_schema['Category']).get(),
             "ProductURL": response.url,
         }
@@ -29,8 +27,14 @@ class TendenzeSpider(NextPageScraper,DataCleanser):
         sku_splitted = product["sku"].split("/")
         product['ProductCode'] = sku_splitted[0]
         product['ProductColor'] = sku_splitted[1] if len(sku_splitted) > 1 else ""
+
+        discount_price = response.css(product_schema['CurrentPrice']).get()
+        if discount_price:
+            product['CurrentPrice'] = discount_price
+            product["OriginalPrice"] = response.css(product_schema['OldPrice']).get()
+        else:
+            product['CurrentPrice'] = response.css(product_schema['PriceNoDiscount']).get()
+            product["OriginalPrice"] = response.css(product_schema['PriceNoDiscount']).get()
         product["PriceCurrency"] = self._convert_currency_symbols_to_code(product['CurrentPrice'])
-        product['OriginalPrice'] = float(re.search(r'[\d,]+', product['OriginalPrice'].replace(".","")).group().replace(',', ''))
-        product['CurrentPrice'] = float(re.search(r'[\d,]+', product['CurrentPrice'].replace(".","")).group().replace(',', ''))
 
         yield product
