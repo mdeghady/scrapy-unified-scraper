@@ -70,7 +70,6 @@ class BaseScraper(scrapy.Spider , ABC):
     def parse_urls(self,response ,urls:List[str] ,parsing_function ,meta:dict = None):
         """Follow any url URLs"""
         self.logger.info(f"starting to parse urls like {urls[0]} with {parsing_function.__name__}")
-        self.logger.info(f"Processing URLs: {urls}")
         for url in urls:
 
             absolute_url = self.make_absolute_url(url)
