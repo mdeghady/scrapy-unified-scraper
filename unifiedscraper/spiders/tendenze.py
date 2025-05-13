@@ -14,7 +14,7 @@ class TendenzeSpider(NextPageScraper):
             "Brand": response.css(product_schema['Brand']).get(),
             "ProductName": response.css(product_schema['ProductName']).get(),
             "ProductImage": response.css(product_schema['ProductImage']).get(),
-            "sku": response.css(product_schema['SkuCode']).get(),
+            "sku": response.css(product_schema['Sku']).get(),
             "CurrentPrice": response.css(product_schema['CurrentPrice']).get(),
             "OriginalPrice": response.css(product_schema['OldPrice']).get(),
             "Category": response.css(product_schema['Category']).get(),
