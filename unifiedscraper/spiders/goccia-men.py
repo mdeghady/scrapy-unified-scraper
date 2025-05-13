@@ -19,6 +19,7 @@ class GocciaMen(NextPageScraper, DataCleanser):
         "Category": response.css(product_schema['Category']).get(),
         "Collection": response.css(product_schema['Collection']).get(),
         "sku": response.css(product_schema['sku']).get(),
+        "ProductUrl": response.url,
         }
         # Clean the product data
         no_discount_price = response.css(product_schema['NoDiscountPrice']).get()
@@ -30,5 +31,8 @@ class GocciaMen(NextPageScraper, DataCleanser):
             product['OriginalPrice'] = response.css(product_schema['OldPrice']).get()
         product["PriceCurrency"] = self._convert_currency_symbols_to_code(
             response.css(product_schema['PriceCurrency']).get())
+        sku_splitted = product['sku'].split('-')
+        product["ProductCode"] = sku_splitted[0]
+        product["Color"] = sku_splitted[1] if len(sku_splitted) > 1 else None
 
         yield product
