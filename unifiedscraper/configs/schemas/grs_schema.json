@@ -7,7 +7,7 @@
             "ProductName": "div.product-info__block-list div[data-block-type=\"title\"]::text",
             "ProductImage": "div.product-gallery__media img::attr(src)",
             "CurrentPrice": "div.product-info__block-list div[data-block-type=\"price\"] sale-price::text",
-            "Old Price": "div.product-info__block-list div[data-block-type=\"price\"] compare-at-price::text",
+            "OldPrice": "div.product-info__block-list div[data-block-type=\"price\"] compare-at-price::text",
             "AvailableSizes": "div.product-info__block-list div[data-block-type=\"variant-picker\"] label.block-swatch:not(.is-disabled) span::text"
     }
 }
