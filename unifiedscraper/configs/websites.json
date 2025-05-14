@@ -43,5 +43,11 @@
         "brands_url": "/brand-donna/",
         "pagination_type": "next_page_button",
         "schema_path": "configs/schemas/goccia_schema.json"
+  },
+  "coolculture": {
+        "base_url": "https://www.coolculture.it/",
+        "brands_url": "/pages/brand",
+        "pagination_type": "next_page_button",
+        "schema_path": "configs/schemas/coolculture_schema.json"
   }
 }

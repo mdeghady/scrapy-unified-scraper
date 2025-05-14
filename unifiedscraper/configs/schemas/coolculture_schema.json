@@ -1,0 +1,15 @@
+{
+  "brands_urls_schema" : "div.container-vendors div.hold-vendor h5.wrap-vendor a.vendor::attr(href)",
+  "products_urls_schema" : "div.collection__products div.product-grid-item a.product__media__holder::attr(href)",
+  "pagination_schema" : "div.pagination span.next a::attr(href)",
+  "product_page_schema" : {
+    "Brand": "div.product-single__wrapper div.product-single__details div.product__block nav.breadcrumbs a::text",
+    "ProductName": "div.product-single__wrapper div.product-single__details div.product__block h1.product__title::text",
+    "ProductColor": "div.product-single__wrapper div.form__wrapper div:not([class]) p::text",
+    "CurrentPrice": "div.product-single__wrapper div.product__price-and-badge div.product__price span.product__price--regular::text",
+    "OldPrice": "div.product-single__wrapper div.product__price-and-badge div.product__price s.product__price--compare::text",
+    "AvailableSizes": "div.product-single__wrapper div.selector-wrapper span.radio__button:not(.sold-out) label::text",
+    "Collection": "div.product-single__wrapper div.product__description p:last-child::text",
+    "ProductCode" : "div.product-single__wrapper div.product-single__details div.product__sku div.sku_new_text span.change_text::text"
+}
+}
