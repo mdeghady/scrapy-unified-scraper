@@ -6,7 +6,7 @@
     "Brand": "div.product-manufacturer span a::text",
     "ProductName": "div#content-wrapper div.row h1.product-detail-name::text",
     "ProductImage": "div.images-container div#thumb-gallery a::attr(data-image)",
-    "ProductColor": "'div.product-description td:contains(\"COLORE\")::text'",
+    "ProductColor": "div.product-description td:contains(\"COLORE\")::text",
     "CurrentPrice": "div.product-price span.current-price-value::text",
     "OldPrice": "div.product-discount span.regular-price::text",
     "AvailableSizes": "div.product-variants div.product-variants-item select.form-control-select option::text",
