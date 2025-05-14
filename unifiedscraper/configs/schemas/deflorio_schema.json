@@ -11,6 +11,6 @@
     "OldPrice": "div.product-discount span.regular-price::text",
     "AvailableSizes": "div.product-variants div.product-variants-item select.form-control-select option::text",
     "sku" : "div.product-reference span[itemprop=\"sku\"]::text",
-    "Category" : "div.productcats li:last-child a::text",
+    "Category" : "div.productcats li:last-child a::text"
   }
 }
