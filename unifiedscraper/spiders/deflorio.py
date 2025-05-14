@@ -31,10 +31,10 @@ class Deflorio(NextPageScraper , DataCleanser):
         product['ProductCode'] = sku_splitted[0]
         product['ProductColorCode'] = sku_splitted[1] if len(sku_splitted) > 1 else None
 
-        product['PriceCurrency'] = self._extract_currency_symbols(product['CurrentPrice'])
+        product['PriceCurrency'] = self._convert_currency_symbols_to_code(product['CurrentPrice'])
         product['CurrentPrice'] = float(
             re.search(r'[\d,]+', product['CurrentPrice']).group().replace(',', '.'))
-        
+
         if product['OriginalPrice']:
             product['OriginalPrice'] = float(
                 re.search(r'[\d,]+', product['OriginalPrice']).group().replace(',', '.'))
