@@ -14,6 +14,7 @@ DOWNLOAD_HANDLERS = {
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
+PLAYWRIGHT_BROWSER_TYPE = "chromium"
 
 SPIDER_MODULES = ["unifiedscraper.spiders"]
 NEWSPIDER_MODULE = "unifiedscraper.spiders"
