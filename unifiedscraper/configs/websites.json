@@ -48,6 +48,7 @@
         "base_url": "https://www.coolculture.it/",
         "brands_url": "/pages/brand",
         "pagination_type": "next_page_button",
-        "schema_path": "configs/schemas/coolculture_schema.json"
+        "schema_path": "configs/schemas/coolculture_schema.json",
+        "playwright": true
   }
 }
