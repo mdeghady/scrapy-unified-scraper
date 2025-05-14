@@ -1,0 +1,16 @@
+{
+  "brands_urls_schema" : "section#wrapper div.container ul.list-brands li.brand div.brand-infos p a::attr(href)",
+  "products_urls_schema" : "section#products div#js-product-list article.product-miniature a.product-thumbnail::attr(href)",
+  "pagination_schema" : "section#products nav.pagination ul.page-list li a[rel=\"next\"]::attr(href)",
+  "product_page_schema" : {
+    "Brand": "div.product-manufacturer span a::text",
+    "ProductName": "div#content-wrapper div.row h1.product-detail-name::text",
+    "ProductImage": "div.images-container div#thumb-gallery a::attr(data-image)",
+    "ProductColor": "'div.product-description td:contains(\"COLORE\")::text'",
+    "CurrentPrice": "div.product-price span.current-price-value::text",
+    "OldPrice": "div.product-discount span.regular-price::text",
+    "AvailableSizes": "div.product-variants div.product-variants-item select.form-control-select option::text",
+    "sku" : "div.product-reference span[itemprop=\"sku\"]::text",
+    "Category" : "div.productcats li:last-child a::text",
+  }
+}
