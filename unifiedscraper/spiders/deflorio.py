@@ -3,10 +3,10 @@ import re
 from unifiedscraper.spiders.base_scraper import NextPageScraper, DataCleanser
 
 
-class Dflorio(NextPageScraper , DataCleanser):
+class Deflorio(NextPageScraper , DataCleanser):
     """Spider for GRS store"""
 
-    name = "dflorio"
+    name = "deflorio"
     allowed_domains = ["deflorio1948.it"]
     start_urls = ["https://deflorio1948.it/"]
 
