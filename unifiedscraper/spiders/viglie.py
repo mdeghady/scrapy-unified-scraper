@@ -31,6 +31,8 @@ class Viglie(NextPageScraper , DataCleanser):
         product['ProductName'] = product['ProductName'].replace("\n" , "").strip()
         product['StockAvailability'] = product['StockAvailability'].replace("\n" , "").strip()
 
+        product["ProductCode"] = product['sku'].split('-')[0]
+
         product['CurrentPrice'] = float(
             re.search(r'[\d.]+', product['CurrentPrice']).group())
         product['OriginalPrice'] = float(
