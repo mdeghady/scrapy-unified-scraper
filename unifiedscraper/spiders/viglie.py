@@ -26,8 +26,8 @@ class Viglie(NextPageScraper , DataCleanser):
             "ProductURL": response.url,
         }
         # Clean the data
-        product['Brand'] = product['Brand'].replace("\n").strip()
-        product['ProductName'] = product['ProductName'].replace("\n").strip()
+        product['Brand'] = product['Brand'].replace("\n" , "").strip()
+        product['ProductName'] = product['ProductName'].replace("\n" , "").strip()
 
         product['CurrentPrice'] = float(
             re.search(r'[\d.]+', product['CurrentPrice']).group())
