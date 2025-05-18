@@ -63,7 +63,7 @@
       "pagination_type": "next_page_button",
       "schema_path": "configs/schemas/euroshoesroma_schema.json"
   },
-  "euroshoes": {
+  "viglie": {
       "base_url": "https://www.vigliettisport.com/en/",
       "brands_url": "/manufacturers/",
       "pagination_type": "next_page_button",
