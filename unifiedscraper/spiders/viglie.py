@@ -7,7 +7,7 @@ class Viglie(NextPageScraper , DataCleanser):
     """Spider for Euroshoesroma store"""
 
     name = "viglie"
-    allowed_domains = ["vigliettisport.com/it"]
+    allowed_domains = ["vigliettisport.com"]
     start_urls = ["https://www.vigliettisport.com/it"]
 
     def parse_product_page(self, response):
