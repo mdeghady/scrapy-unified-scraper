@@ -1,6 +1,6 @@
 {
   "brands_urls_schema" : "div.brand_container a::attr(href)",
-  "products_urls_schema" : "\"div.p-item a.thumbnail.product-thumbnail::attr(href)\"",
+  "products_urls_schema" : "div.p-item a.thumbnail.product-thumbnail::attr(href)",
   "pagination_schema" : "nav.pagination ul.page-list li.current+li a::attr(href)",
   "product_page_schema" : {
     "Brand": "div.info_product div.brand::text",
