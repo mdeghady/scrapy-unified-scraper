@@ -24,10 +24,12 @@ class Viglie(NextPageScraper , DataCleanser):
             "Category": response.css(product_schema['Category']).get(),
             "sku": response.css(product_schema['sku']).get(),
             "ProductURL": response.url,
+            "StockAvailability" : response.css(product_schema['StockAvailability']).get()
         }
         # Clean the data
         product['Brand'] = product['Brand'].replace("\n" , "").strip()
         product['ProductName'] = product['ProductName'].replace("\n" , "").strip()
+        product['StockAvailability'] = product['StockAvailability'].replace("\n" , "").strip()
 
         product['CurrentPrice'] = float(
             re.search(r'[\d.]+', product['CurrentPrice']).group())
