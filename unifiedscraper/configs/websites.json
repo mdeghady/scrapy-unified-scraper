@@ -65,7 +65,7 @@
   },
   "viglie": {
       "base_url": "https://www.vigliettisport.com/it/",
-      "brands_url": "/produttori/",
+      "brands_url": "produttori/",
       "pagination_type": "next_page_button",
       "schema_path": "configs/schemas/viglie_schema.json"
   }
