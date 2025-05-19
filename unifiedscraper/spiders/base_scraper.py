@@ -65,11 +65,14 @@ class BaseScraper(scrapy.Spider , ABC):
         yield from self.parse_urls(response,
                         brand_urls,
                         self.parse_site_products_page,
-                        meta={'brand_url': response.url})
+                        meta={'brand_url': response.url},
+                        query_params=self.config.get('products_page_query_params' , None))
 
-    def parse_urls(self,response ,urls:List[str] ,parsing_function ,meta:dict = None):
+    def parse_urls(self,response ,urls:List[str] ,parsing_function ,meta:dict = None , query_params:str = None):
         """Follow any url URLs"""
         for url in urls:
+            if query_params:
+                url = url + query_params
 
             absolute_url = self.make_absolute_url(url)
             if self.allowed_domains[0] in absolute_url:
