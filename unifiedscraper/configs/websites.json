@@ -68,5 +68,12 @@
       "brands_url": "produttori",
       "pagination_type": "next_page_button",
       "schema_path": "configs/schemas/viglie_schema.json"
+  },
+  "progetto": {
+      "base_url": "https://www.progettostore.com/",
+      "brands_url": "/",
+      "pagination_type": "next_page_button",
+      "products_page_query_params": "?resultsPerPage=10000",
+      "schema_path": "configs/schemas/progetto_schema.json"
   }
 }
