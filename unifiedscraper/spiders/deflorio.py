@@ -4,7 +4,7 @@ from unifiedscraper.spiders.base_scraper import NextPageScraper, DataCleanser
 
 
 class Deflorio(NextPageScraper , DataCleanser):
-    """Spider for GRS store"""
+    """Spider for Deflorio store"""
 
     name = "deflorio"
     allowed_domains = ["deflorio1948.it"]
