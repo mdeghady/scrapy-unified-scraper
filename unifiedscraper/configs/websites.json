@@ -75,5 +75,11 @@
       "pagination_type": "next_page_button",
       "products_page_query_params": "?resultsPerPage=10000",
       "schema_path": "configs/schemas/progetto_schema.json"
+  },
+  "evolution": {
+      "base_url": "https://www.evolutionsessa.com/it/",
+      "brands_url": "tutti/designers/",
+      "pagination_type": "next_page_button",
+      "schema_path": "configs/schemas/evolution_schema.json"
   }
 }

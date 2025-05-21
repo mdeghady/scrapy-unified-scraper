@@ -1,0 +1,16 @@
+{
+  "brands_urls_schema" : "div.container.elenco div.row div.col-md-11 ul.designer li a::attr(href)",
+  "products_urls_schema" : "div.row div.item div.frame div.cnt a.prod::attr(href)",
+  "pagination_schema" : "div.paginazione div.col-md-10 ul li:last-child a::attr(href)",
+  "product_page_schema" : {
+    "Brand": "div.row div.col-md-5 div.txt h1::text",
+    "ProductName": "div#breadcrumb div.col-md-6 h2::text",
+    "ProductImage": "div.row div.col-md-7 div.imgb div.swiper-zoom-container a[data-fancybox=\"gallery\"] img::attr(src)",
+    "ProductDetails": "script[type=\"application/ld+json\"]:last-child::text",
+    "CurrentPrice": "div.row div.col-md-5 div.txt h3.price em::text",
+    "OldPrice": "div.row div.col-md-5 div.txt h3.price span del::text",
+    "AvailableSizes": "div#cart_section div#taglia_wrap a::attr(data-size)",
+    "sku" : "div.row div.col-md-5 div.txt h6::text",
+    "Category": "div#breadcrumb div.col-md-6 h6#bred a:nth-last-child(2)::text"
+  }
+}
