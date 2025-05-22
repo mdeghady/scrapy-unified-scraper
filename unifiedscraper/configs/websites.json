@@ -81,5 +81,11 @@
       "brands_url": "tutti/designers/",
       "pagination_type": "next_page_button",
       "schema_path": "configs/schemas/evolution_schema.json"
+  },
+  "durso": {
+      "base_url": "https://www.dursoboutique.com/store/it/",
+      "brands_url": "/",
+      "pagination_type": "next_page_button",
+      "schema_path": "configs/schemas/durso_schema.json"
   }
 }
