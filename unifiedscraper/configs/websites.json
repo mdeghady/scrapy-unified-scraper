@@ -87,5 +87,12 @@
       "brands_url": "/",
       "pagination_type": "next_page_button",
       "schema_path": "configs/schemas/durso_schema.json"
+  },
+  "itgio": {
+      "base_url": "https://www.itgiocollection.com/",
+      "brands_url": "/brands",
+      "pagination_type": "next_page_button",
+      "products_page_query_params": "?order=product.price.desc&resultsPerPage=9999999",
+      "schema_path": "configs/schemas/itgio_schema.json"
   }
 }
