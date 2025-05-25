@@ -17,7 +17,7 @@ class Cisalfa(NextPageScraper, DataCleanser):
         "ProductImage": response.css(product_schema['ProductImage']).get(),
         "ProductColor" : response.css(product_schema['ProductColor']).get(),
         "CurrentPrice": response.css(product_schema['CurrentPrice']).get(),
-        "OldPrice": response.css(product_schema['OldPrice']).get(),
+        "OriginalPrice": response.css(product_schema['OldPrice']).get(),
         "AvailableSizes": response.css(product_schema['AvailableSizes']).getall(),
         "Category": response.css(product_schema['Category']).get(),
         "sku": response.css(product_schema['sku']).get(),
