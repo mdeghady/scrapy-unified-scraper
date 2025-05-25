@@ -1,0 +1,17 @@
+{
+  "brands_urls_schema" : "ul.cc-brands-list__list li.cc-brands-list__item a::attr(href)",
+  "products_urls_schema" : "article.cc-plp__item div.cc-tile.product-tile a.cc-tile__url-absolute::attr(href)",
+  "pagination_schema" : "a.next",
+  "product_page_schema" : {
+    "Brand": "div.cc-pdp__product-info span.cc-pdp__product-brand span[itemprop=\"name\"]::text",
+    "ProductName": "div.cc-pdp__product-info span.cc-pdp__product-name::text",
+    "ProductImage": "div.cc-product-image img.cc-pdp__image::attr(src)",
+    "ProductColor": "div.cc-pdp__swatch-wrap butoon.color-attribute div.color-value img.cc-imgLazy::attr(alt)",
+    "CurrentPrice": "div.price.cc-product-wrp span.sales span.value::attr(content)",
+    "OldPrice": "div.price.cc-product-wrp span.cc-product__prices--default::attr(content)",
+    "AvailableSizes": "div.cc-pdp__swatch-wrap button.size-attribute.cc-available span::attr(data-attr-value)",
+    "PriceCurrency" : "div.prices meta[itemprop=\"priceCurrency\"]::attr(content)",
+    "sku" : "div.cc-accordion__body.cc-pdp__accordion-text-wrp ul li.attribute-values:contains(\"Codice\") strong::text",
+    "Category" : "div.cc-pdp__product-info a[itemprop=\"category\"] span.cc-pdp__product-type::text"
+  }
+}
