@@ -25,4 +25,10 @@ class Cisalfa(NextPageScraper, DataCleanser):
         "ProductURL": response.url,
         }
 
+        if product['ProductImage']:
+            product['ProductImage'] = self.make_absolute_url(
+                follow_url=product['ProductImage'],
+                parent_url="https://www.cisalfasport.it/"
+            )
+
         yield product
