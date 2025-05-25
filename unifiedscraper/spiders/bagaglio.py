@@ -34,5 +34,6 @@ class Bagaglio(NextPageScraper, DataCleanser):
         else:
             product['OriginalPrice'] = product['CurrentPrice']
 
+        product['ProductColor'] = product['ProductColor'].replace("\n" , "").strip()
 
         yield product
