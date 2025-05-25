@@ -94,5 +94,12 @@
       "pagination_type": "next_page_button",
       "products_page_query_params": "?order=product.price.desc&resultsPerPage=9999999",
       "schema_path": "configs/schemas/itgio_schema.json"
+  },
+  "cisalfa": {
+      "base_url": "https://www.cisalfasport.it/",
+      "brands_url": "/it-it/brand/",
+      "pagination_type": "next_page_button",
+      "products_page_query_params": "/?show=all&sz=7200",
+      "schema_path": "configs/schemas/cisalfa_schema.json"
   }
 }
