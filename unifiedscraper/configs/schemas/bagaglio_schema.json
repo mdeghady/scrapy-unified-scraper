@@ -1,0 +1,16 @@
+{
+  "brands_urls_schema" : "div.manufacturerContent div.singleList ul.manufacturerList li.manufacturerEntry a::attr(href)",
+  "products_urls_schema" : "div.productBox-wrapper a.product-link::attr(href)",
+  "pagination_schema" : "div.pager-wrapper.locator-item ul.pagination li.nextPage a::attr(href)",
+  "product_page_schema" : {
+    "Brand": "div.manufacturerLogo a::attr(title)",
+    "ProductName": "h1.productTitle::text",
+    "ProductImage": "div.articlePictures figure.fullWidth a.sliderLink::attr(href)",
+    "ProductColor": "div.product-background-wrapper  div#variantSelectionTiles div.chosenType strong::text",
+    "CurrentPrice": "div.priceBlock-wrapper span.price strong::text",
+    "OldPrice": "div.priceBlock-wrapper span.priceOld span.strikeOldPrice::text",
+    "sku" : "div#productDetails-wrapper ul.attributes li span.attrTitle:contains(\"Web-Code:\")+span.attrValue::text",
+    "ProductCode" : "div#productDetails-wrapper ul.attributes li span.attrTitle:contains(\"Nr. Art.:\")+span.attrValue::text",
+    "Category" : "ol.breadcrumb-list li:not(.hideMobile) a::text"
+  }
+}

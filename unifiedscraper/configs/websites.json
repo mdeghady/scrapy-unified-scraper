@@ -101,5 +101,11 @@
       "pagination_type": "next_page_button",
       "products_page_query_params": "/?show=all&sz=7200",
       "schema_path": "configs/schemas/cisalfa_schema.json"
+  },
+  "bagaglio": {
+      "base_url": "https://www.bagaglio.it/",
+      "brands_url": "/Marche",
+      "pagination_type": "next_page_button",
+      "schema_path": "configs/schemas/bagaglio_schema.json"
   }
 }
