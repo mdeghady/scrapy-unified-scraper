@@ -9,27 +9,47 @@
 
 BOT_NAME = "unifiedscraper"
 
-DOWNLOAD_HANDLERS = {
-    "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-    "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-}
-TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
-PLAYWRIGHT_BROWSER_TYPE = "chromium"
+# DOWNLOAD_HANDLERS = {
+#     "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+#     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+# }
+# TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
+# PLAYWRIGHT_BROWSER_TYPE = "chromium"
 
 SPIDER_MODULES = ["unifiedscraper.spiders"]
 NEWSPIDER_MODULE = "unifiedscraper.spiders"
 
 ADDONS = {}
 
+# FEEDS = {
+#     'output/%(name)s_data.csv': {
+#         'format': 'csv',
+#         'encoding': 'utf-8-sig',
+#         'overwrite': True,
+#         'fields': None,
+#         'item_export_kwargs': {
+#                     'export_empty_fields': True,
+#                 },
+#     }
+# }
+
+FEED_EXPORTERS={'parquet': 'zuinnote.scrapy.contrib.bigexporters.ParquetItemExporter'} # register additional format
+from datetime import datetime
 FEEDS = {
-    'output/%(name)s_data.csv': {
-        'format': 'csv',
-        'encoding': 'utf-8-sig',
-        'overwrite': True,
-        'fields': None,
+f'data/year={datetime.now().year}/month={datetime.now().month}/day={datetime.now().day}/website=%(name)s/%(time)s.parquet': {
+        'format': 'parquet',
+        'encoding': 'utf8',
+        'store_empty': False,
         'item_export_kwargs': {
-                    'export_empty_fields': True,
-                },
+           'compression': 'GZIP',
+           'times': 'int64',
+           'hasnulls': True,
+           'convertallstrings': False,
+           'writeindex': False,
+           'objectencoding': 'infer',
+           'rowgroupoffset': 8 * 1024 * 1024,   # 8MB
+           'items_rowgroup': 1000,  # 1000 items per row group
+        },
     }
 }
 
@@ -40,6 +60,9 @@ FEEDS = {
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
+
+# Stop Redirection
+# REDIRECT_ENABLED = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
