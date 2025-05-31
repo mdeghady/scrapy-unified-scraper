@@ -35,7 +35,11 @@ class Viglie(NextPageScraper , DataCleanser):
 
         product['CurrentPrice'] = float(
             re.search(r'[\d.]+', product['CurrentPrice']).group())
-        product['OriginalPrice'] = float(
-            re.search(r'[\d.]+', product['OriginalPrice']).group())
+        
+        if product['OriginalPrice']:
+            product['OriginalPrice'] = float(
+                re.search(r'[\d.]+', product['OriginalPrice']).group())
+        else:
+            product['OriginalPrice'] = product['CurrentPrice']
 
         yield product
