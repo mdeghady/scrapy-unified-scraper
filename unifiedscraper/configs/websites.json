@@ -5,15 +5,6 @@
     "pagination_type": "next_page_button",
     "schema_path": "configs/schemas/wardow_schema.json"
   },
-  "lelefantino": {
-    "base_url": "https://lelefantino-store.com",
-    "brands_url": "/pages/brand",
-    "pagination_type": "load_more_button",
-    "load_more_query": "?usf_take=",
-    "load_more_offset": 24,
-    "playwright": true,
-    "schema_path": "configs/schemas/lelefantino_schema.json"
-  },
   "pellecchia": {
         "base_url": "https://www.pellecchia.it/",
         "brands_url": "/it/tutti/designers",
@@ -56,12 +47,6 @@
       "brands_url": "/brands",
       "pagination_type": "next_page_button",
       "schema_path": "configs/schemas/deflorio_schema.json"
-  },
-  "euroshoesroma": {
-      "base_url": "https://www.euroshoesroma.it/",
-      "brands_url": "/pages/designers",
-      "pagination_type": "next_page_button",
-      "schema_path": "configs/schemas/euroshoesroma_schema.json"
   },
   "viglie": {
       "base_url": "https://www.vigliettisport.com/it/",
@@ -107,5 +92,13 @@
       "brands_url": "/Marche",
       "pagination_type": "next_page_button",
       "schema_path": "configs/schemas/bagaglio_schema.json"
+  },
+  "esdemarca": {
+      "base_url": "https://www.esdemarca.com/en/",
+      "brands_url": "",
+      "pagination_type": "next_page_button",
+      "products_page_query_params": "?pag=6000",
+      "schema_path": "configs/schemas/esdemarca_schema.json"
   }
+
 }
