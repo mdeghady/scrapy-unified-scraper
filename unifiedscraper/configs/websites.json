@@ -1,7 +1,7 @@
 {
   "wardow": {
-    "base_url": "https://www.wardow.com",
-    "brands_url": "/en/brands/",
+    "base_url": "https://www.wardow.com/it/",
+    "brands_url": "marche/",
     "pagination_type": "next_page_button",
     "schema_path": "configs/schemas/wardow_schema.json"
   },
@@ -17,12 +17,6 @@
         "pagination_type": "next_page_button",
         "schema_path": "configs/schemas/tendenze_schema.json"
   },
-  "grs": {
-        "base_url": "https://grsboutique.com/",
-        "brands_url": "",
-        "pagination_type": "next_page_button",
-        "schema_path": "configs/schemas/grs_schema.json"
-  },
   "goccia-men": {
         "base_url": "https://goccia.shop/",
         "brands_url": "/brand-uomo/",
@@ -34,13 +28,6 @@
         "brands_url": "/brand-donna/",
         "pagination_type": "next_page_button",
         "schema_path": "configs/schemas/goccia_schema.json"
-  },
-  "coolculture": {
-        "base_url": "https://www.coolculture.it/",
-        "brands_url": "/pages/brand",
-        "pagination_type": "next_page_button",
-        "schema_path": "configs/schemas/coolculture_schema.json",
-        "playwright": true
   },
   "deflorio": {
       "base_url": "https://deflorio1948.it/",
@@ -92,13 +79,6 @@
       "brands_url": "/Marche",
       "pagination_type": "next_page_button",
       "schema_path": "configs/schemas/bagaglio_schema.json"
-  },
-  "esdemarca": {
-      "base_url": "https://www.esdemarca.com/en/",
-      "brands_url": "",
-      "pagination_type": "next_page_button",
-      "products_page_query_params": "?pag=6000",
-      "schema_path": "configs/schemas/esdemarca_schema.json"
   }
 
 }
