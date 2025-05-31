@@ -24,10 +24,14 @@ class PellecchiaSpider(NextPageScraper):
             "ProductURL": response.url,
         }
         product['Brand'] = self._clean_string(product['Brand'])
-        product["ProductCode"] = product["sku"].replace("SKU: " , "")
+        product['sku'] = product['sku'].replace("SKU","").replace(":","").strip()
+        product["ProductCode"] = product['sku'].split('-')[0]
         product['PriceCurrency'] = self._convert_currency_symbols_to_code(product['CurrentPrice'])
-        product['OriginalPrice'] = float(re.search(r'[\d,]+', product['OriginalPrice']).group().replace(',', ''))
         product['CurrentPrice'] = float(re.search(r'[\d,]+', product['CurrentPrice']).group().replace(',', ''))
+        if product['OriginalPrice']:
+                    product['OriginalPrice'] = float(re.search(r'[\d,]+', product['OriginalPrice']).group().replace(',', ''))
+        else:
+            product['OriginalPrice'] = product['CurrentPrice']
         product['AvailableSizes'] = [self._clean_string(size) for size in product['AvailableSizes']]
 
         yield product
