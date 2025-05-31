@@ -1,0 +1,17 @@
+{
+  "brands_urls_schema" : "div.col-md-2.e4_he_row_brands_todas a.e4_filtro_marcas_cabecera_todas::attr(href)",
+  "products_urls_schema" : "div.col_product_item a[title]::attr(href)",
+  "pagination_schema" : "a.next",
+  "product_page_schema" : {
+    "Brand": "div.e3_p_product_main_data h1.e3_p_nombre a span.e3_p_marca::text",
+    "ProductName": "div.e3_p_product_main_data h1.e3_p_nombre span.e4_nombre_producto::text",
+    "ProductImage": "div#e4_main_imagenes a.e3_p_imagen_grande_link::attr(href)",
+    "ProductColor": "div.caracteristicas_producto div:contains(\"Colour\")::text",
+    "CurrentPrice": "div.e4_producto_dinamico span.e3_p_precio_rojo::text",
+    "OldPrice": "div.e4_producto_dinamico span.e3_p_precio_pvp::text",
+    "NoDiscountPrice": "div.e4_producto_dinamico span.e3_p_precio::text",
+    "AvailableSizes": "div.e3_p_sizes_data div.e3_p_sizes_entry::attr(data-nombre)",
+    "sku" : "div.e4_descripcion_producto p:contains(\"Reference\")::text",
+    "Category" : "ul.e3_migas_produ li:last-child a span::text"
+  }
+}
