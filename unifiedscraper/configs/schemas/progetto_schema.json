@@ -11,6 +11,7 @@
     "OldPrice": "div.current-price span.product-discount span.regular-price::text",
     "AvailableSizes": "div.product-variants-item.type_radio ul li.input-container span.radio-label::text",
     "sku" : "div.product_meta div.sku_wrapper span:last-child::text",
-    "Category": "div.single-breadcrumbs nav a:nth-last-child(3) span::text"
+    "Category": "div.single-breadcrumbs nav a:nth-last-child(3) span::text",
+    "Department": "div.single-breadcrumbs nav a:nth-child(2) span::text"
   }
 }

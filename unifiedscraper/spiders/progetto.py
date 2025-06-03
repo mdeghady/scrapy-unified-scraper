@@ -22,6 +22,7 @@ class Progetto(NextPageScraper , DataCleanser):
             "OriginalPrice": response.css(product_schema['OldPrice']).get(),
             "AvailableSizes": response.css(product_schema['AvailableSizes']).getall(),
             "Category": response.css(product_schema['Category']).get(),
+            "Department": response.css(product_schema['Department']).get(),
             "sku": response.css(product_schema['sku']).get(),
             "ProductURL": response.url,
         }
