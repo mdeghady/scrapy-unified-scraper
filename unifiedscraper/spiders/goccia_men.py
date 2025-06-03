@@ -17,7 +17,9 @@ class GocciaMen(NextPageScraper, DataCleanser):
         "ProductImage": response.css(product_schema['ProductImage']).get(),
         "AvailableSizes": response.css(product_schema['AvailableSizes']).getall(),
         "Category": response.css(product_schema['Category']).get(),
+        "ProductCode" : response.css(product_schema['ProductCode']).get(),
         "sku": response.css(product_schema['sku']).get(),
+        "Department": response.css(product_schema['Department']).get(),
         "ProductURL": response.url,
         }
         # Clean the product data
@@ -35,8 +37,7 @@ class GocciaMen(NextPageScraper, DataCleanser):
         product['CurrentPrice'] = float(
             re.search(r'[\d,]+', product['CurrentPrice']).group().replace(",", "."))
 
-        sku_splitted = product['sku'].split('-')
-        product["ProductCode"] = sku_splitted[0]
-        product["Color"] = sku_splitted[1] if len(sku_splitted) > 1 else None
+        product_code_splitted = product['ProductCode'].split('-')
+        product["Color"] = product_code_splitted[1] if len(product_code_splitted) > 1 else None
 
         yield product

@@ -11,10 +11,12 @@
               "OldPrice": "p.price del",
               "PriceCurrency": "p.price span.woocommerce-Price-currencySymbol::text",
               "ProductColor" : "div.colore ul.products li:has(> picture:first-child)::text",
-              "sku": "div.product_meta span.sku::text",
+              "ProductCode": "div.product_meta span.sku::text",
+              "sku": "p:contains('Codice')::text",
               "AvailableSizes": "select#taglia option[class]::attr(value)",
               "Collection": "li.woocommerce-product-attributes-item--attribute_pa_collezione span.woocommerce-product-attributes-item__value::text",
-              "Category": "div.site-breadcrumbs a:nth-child(5)::text"
+              "Category": "div.site-breadcrumbs a:nth-child(5)::text",
+              "Department": "div.site-breadcrumbs a:nth-child(3)::text"
     }
 
 }
