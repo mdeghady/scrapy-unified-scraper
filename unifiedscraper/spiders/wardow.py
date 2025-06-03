@@ -45,5 +45,26 @@ class Wardow(NextPageScraper, DataCleanser):
             product['OriginalPrice'] = float(
                 re.search(r'[\d,]+', product['OriginalPrice']).group().replace(',', '.'))
 
+        description = {}
+        
+        # Extract key-value pairs from description-general
+        for li in response.css('div.description-general li'):
+            key = li.css('strong::text').get()
+            if key:
+                key = key.strip(':').strip()
+                value = li.xpath('text()').getall()
+                value = ' '.join(v.strip() for v in value if v.strip())
+                description[key] = value
+    
+        
+        # Extract product details (list items)
+        description['Product Details'] = response.css('div.description-details li::text').getall()
+        description['Product Details'] = [detail.strip() for detail in description['Product Details'] if detail.strip()]
+        
+        # Extract interior details
+        description['Interior'] = response.css('div.description-inside li::text').getall()
+        description['Interior'] = [detail.strip() for detail in description['Interior'] if detail.strip()]
+
+        product['Description'] = description
 
         yield product

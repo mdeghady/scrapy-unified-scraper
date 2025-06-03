@@ -14,6 +14,7 @@
     "Category" : "div.breadcrumbs ul li:nth-child(2) a::text",
     "sku": "div.description-general li.sku span[itemprop=\"sku\"]::text",
     "StockAvailability" : "p.availability span::text",
-    "WebCode" : "li.sku::text"
+    "WebCode" : "li.sku::text",
+    "Description" : "div.description-general li"
   }
 }
