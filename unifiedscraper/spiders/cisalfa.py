@@ -20,6 +20,7 @@ class Cisalfa(NextPageScraper, DataCleanser):
         "OriginalPrice": response.css(product_schema['OldPrice']).get(),
         "AvailableSizes": response.css(product_schema['AvailableSizes']).getall(),
         "Category": response.css(product_schema['Category']).get(),
+        "Department": response.css(product_schema['Department']).get(),
         "sku": response.css(product_schema['sku']).get(),
         "PriceCurrency": response.css(product_schema['PriceCurrency']).get(),
         "ProductURL": response.url,
@@ -30,5 +31,10 @@ class Cisalfa(NextPageScraper, DataCleanser):
                 follow_url=product['ProductImage'],
                 parent_url="https://www.cisalfasport.it/"
             )
+
+        if product["AvailableSizes"]:
+            product["AvailableSizes"] = [size.replace("," , ".") for size in product["AvailableSizes"] if size]
+
+        product['ProductColor'] = product['ProductColor'].split("-")[-1].strip() if product['ProductColor'] else None
 
         yield product
