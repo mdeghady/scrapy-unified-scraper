@@ -40,8 +40,8 @@ class Evolution(NextPageScraper , DataCleanser):
 
 
         #clean sku data
-        sku_splitted = product['sku'].replace("SKU:" , "").split(" ")[0].split('-')[0].split('_')[0]
-        product['ProductCode'] = sku_splitted
+        product['sku'] = product['sku'].replace("SKU:" , "")
+
 
         try:
             product_details = json.loads(product.pop('ProductDetails'))
