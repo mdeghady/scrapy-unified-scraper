@@ -16,10 +16,13 @@ class TendenzeSpider(NextPageScraper,DataCleanser):
             "ProductImage": response.css(product_schema['ProductImage']).get(),
             "sku": response.css(product_schema['sku']).get(),
             "Category": response.css(product_schema['Category']).get(),
+            "Department": response.css(product_schema['Department']).get(),
             "ProductURL": response.url,
         }
 
         product["ProductImage"] = self.make_absolute_url(product["ProductImage"])
+        product['Category'] = product['Category'].strip() if product['Category'] else ""
+        product['Department'] = product['Department'].strip() if product['Department'] else ""
 
         available_sizes = response.css(product_schema['AvailableSizes.option1']).getall()
         if not available_sizes:
