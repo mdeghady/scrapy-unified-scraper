@@ -14,6 +14,7 @@
         "AvailableSizes": "div#cart_section div#taglia_wrap a::text",
         "Description": "div#descrizione p:nth-child(1)::text",
         "ProductColor": "div#descrizione p:nth-child(2)::text",
-        "Category": "#bred > a:nth-child(3)::text"
+        "Category": "#bred > a:nth-child(3)::text",
+        "Department": "#bred > a:first-child::text"
       }
 }

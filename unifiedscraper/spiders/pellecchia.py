@@ -21,6 +21,7 @@ class PellecchiaSpider(NextPageScraper):
             "Description": response.css(product_schema['Description']).get(),
             "ProductColor": response.css(product_schema['ProductColor']).get(),
             "Category": response.css(product_schema['Category']).get(),
+            "Department": response.css(product_schema['Department']).get(),
             "ProductURL": response.url,
         }
         product['Brand'] = self._clean_string(product['Brand'])
