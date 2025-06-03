@@ -7,11 +7,13 @@
     "ProductName": "div#col-product-info h1.page-title span::text",
     "ProductImage": "div.product-lmage-large.swiper-slide.js-thumb-selected div.easyzoom a::attr(href)",
     "ProductColor": "div.product-variants ul#group_2 li input[checked=\"checked\"]::attr(title)",
+    "alternateColor" : "div.product-description li:contains('color:')::text",
     "CurrentPrice": "div#col-product-info div.product-prices span.current-price span.product-price::text",
     "OldPrice": "div.has-discount span.regular-price::text",
     "AvailableSizes": "div.product-variants-item ul#group_4 li span::text",
     "sku" : "div.product-reference span::text",
     "Category" : "nav.breadcrumb ol li:nth-last-child(2) span::text",
+    "Department" : "nav.breadcrumb ol li:nth-child(2) span::text",
     "Availability" : "div#col-product-info div.product-prices span#product-availability::text",
     "ProductDescription" : "div.product-description p::text"
   }

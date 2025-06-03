@@ -24,6 +24,7 @@ class Durso(NextPageScraper , DataCleanser):
             "OriginalPrice": response.css(product_schema['OldPrice']).get(),
             "AvailableSizes": response.css(product_schema['AvailableSizes']).getall(),
             "Category": response.css(product_schema['Category']).get(),
+            "Department": response.css(product_schema['Department']).get(),
             "sku": response.css(product_schema['sku']).get(),
             "ProductURL": response.url,
             "Availability" : "".join(response.css(product_schema['Availability']).getall())
@@ -47,5 +48,7 @@ class Durso(NextPageScraper , DataCleanser):
 
         if not product["ProductColor"]:
             product["ProductColor"] = product["ProductURL"].split("-")[-1]
+        if 'html' in product["ProductColor"]:
+            product["ProductColor"] = response.css(product_schema['alternateColor']).get()
 
         yield product
