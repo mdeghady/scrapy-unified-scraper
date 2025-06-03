@@ -36,4 +36,17 @@ class Bagaglio(NextPageScraper, DataCleanser):
 
         product['ProductColor'] = product['ProductColor'].replace("\n" , "").strip()
 
+        attributes = {}
+    
+        # Extract all <li> elements inside <ul class="attributes">
+        for li in response.css('ul.attributes li'):
+            key = li.css('span.attrTitle::text, label.attrTitle::text').get()
+            value = li.css('span.attrValue::text').get()
+            
+            if key and value:
+                key = key.strip().rstrip(':')  # Clean up key (remove trailing colon)
+                value = value.strip()
+                attributes[key] = value
+
+        product['Description'] = attributes
         yield product
