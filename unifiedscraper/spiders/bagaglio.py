@@ -20,6 +20,7 @@ class Bagaglio(NextPageScraper, DataCleanser):
         "OriginalPrice": response.css(product_schema['OldPrice']).get(),
         "Category": response.css(product_schema['Category']).get(),
         "sku": response.css(product_schema['sku']).get(),
+        "AvailableSizes": "One Size",
         "ProductURL": response.url,
         }
 
