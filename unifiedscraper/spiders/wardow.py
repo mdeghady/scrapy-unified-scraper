@@ -22,6 +22,8 @@ class Wardow(NextPageScraper, DataCleanser):
         "PriceCurrency": response.css(product_schema['PriceCurrency']).get(),
         "Category": response.css(product_schema['Category']).get(),
         "sku": response.css(product_schema['sku']).get(),
+        "AvailableSizes" : "One Size",
+        "WebCode" : response.css(product_schema['WebCode']).getall(),
         "StockAvailability" : response.css(product_schema['StockAvailability']).get(),
         "ProductURL": response.url,
         }
@@ -29,6 +31,8 @@ class Wardow(NextPageScraper, DataCleanser):
         # Clean Data
         product['Brand'] = product['Brand'].replace("\n" , "").strip()
         product['Category'] = product['Brand'].replace("\n", "").strip()
+        product['WebCode'] = product['WebCode'][-1].replace("\n", "").strip() if product['WebCode'] else None
+
 
 
         if product['NoDiscountPrice']:

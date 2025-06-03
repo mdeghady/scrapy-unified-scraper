@@ -13,6 +13,7 @@
     "PriceCurrency" : "div.price-info meta[itemprop=\"priceCurrency\"]::attr(content)",
     "Category" : "div.breadcrumbs ul li:nth-child(2) a::text",
     "sku": "div.description-general li.sku span[itemprop=\"sku\"]::text",
-    "StockAvailability" : "p.availability span::text"
+    "StockAvailability" : "p.availability span::text",
+    "WebCode" : "li.sku::text"
   }
 }
