@@ -25,7 +25,7 @@ class Bagaglio(NextPageScraper, DataCleanser):
         }
 
         # Clean Data
-        product['ProductCurrency'] = self._convert_currency_symbols_to_code(product['CurrentPrice'])
+        product['PriceCurrency'] = self._convert_currency_symbols_to_code(product['CurrentPrice'])
         product['CurrentPrice'] = float(
             re.search(r'[\d,]+', product['CurrentPrice']).group().replace(',', '.'))
 
