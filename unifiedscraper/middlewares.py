@@ -7,6 +7,8 @@ from scrapy import signals
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
+import random
+from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
 
 
 class UnifiedscraperSpiderMiddleware:
@@ -98,3 +100,60 @@ class UnifiedscraperDownloaderMiddleware:
 
     def spider_opened(self, spider):
         spider.logger.info("Spider opened: %s" % spider.name)
+
+class RandomUserAgentMiddleware(UserAgentMiddleware):
+    def __init__(self, user_agent=''):
+        self.user_agent = user_agent
+        # List of user agents to rotate
+        self.user_agent_list = [
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0',
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15',
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edge/91.0.864.59',
+            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:89.0) Gecko/20100101 Firefox/89.0',
+        ]
+        
+    def process_request(self, request, spider):
+        ua = random.choice(self.user_agent_list)
+        request.headers['User-Agent'] = ua
+        return None
+
+class RandomHeadersMiddleware:
+    def process_request(self, request, spider):
+        # Random Accept-Language
+        languages = [
+            'en-US,en;q=0.9',
+            'en-GB,en;q=0.9',
+            'fr-FR,fr;q=0.9,en;q=0.8',
+            'de-DE,de;q=0.9,en;q=0.8',
+            'es-ES,es;q=0.9,en;q=0.8',
+        ]
+        
+        # Random Accept-Encoding
+        encodings = [
+            'gzip, deflate, br',
+            'gzip, deflate',
+            'br',
+        ]
+        
+        # Random DNT (Do Not Track)
+        dnt_values = ['1', '0']
+        
+        # Set random headers
+        request.headers['Accept-Language'] = random.choice(languages)
+        request.headers['Accept-Encoding'] = random.choice(encodings)
+        request.headers['DNT'] = random.choice(dnt_values)
+        request.headers['Connection'] = 'keep-alive'
+        request.headers['Upgrade-Insecure-Requests'] = '1'
+        
+        # Random Accept header
+        accept_headers = [
+            'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+        ]
+        request.headers['Accept'] = random.choice(accept_headers)
+        
+        return None
