@@ -64,7 +64,7 @@
       "base_url": "https://www.cisalfasport.it/",
       "brands_url": "/it-it/brand/",
       "pagination_type": "next_page_button",
-      "products_page_query_params": "/?show=all&sz=7200",
+      "products_page_query_params": "/?show=all",
       "schema_path": "configs/schemas/cisalfa_schema.json"
   },
   "bagaglio": {
@@ -72,6 +72,24 @@
       "brands_url": "/Marche",
       "pagination_type": "next_page_button",
       "schema_path": "configs/schemas/bagaglio_schema.json"
+  },
+  "answear-uomo": {
+      "base_url": "https://answear.it",
+      "brands_url": "/marche/uomo",
+      "pagination_type": "next_page_button",
+      "schema_path": "configs/schemas/answear_schema.json"
+  },
+  "answear-donna": {
+      "base_url": "https://answear.it",
+      "brands_url": "/marche/donna",
+      "pagination_type": "next_page_button",
+      "schema_path": "configs/schemas/answear_schema.json"
+  },
+  "answear-bambini": {
+      "base_url": "https://answear.it",
+      "brands_url": "/marche/bambini",
+      "pagination_type": "next_page_button",
+      "schema_path": "configs/schemas/answear_schema.json"
   }
 
 }
