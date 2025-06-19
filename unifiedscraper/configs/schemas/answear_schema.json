@@ -1,0 +1,16 @@
+{
+  "brands_urls_schema" : "ul[data-test='listBrands'] li div ul li a::attr(href)",
+  "products_urls_schema" : "div.Products__productsFullWide__WNGME div div div a[data-test='productItem']::attr(href)",
+  "pagination_schema" : "div[data-test='pagination'] a[data-test='paginationPageNextButton']::attr(href)",
+  "product_page_schema" : {
+    "Brand": "div.ProductCard__productNameAndLogo__N28so figure[data-test='productCardBrandLogo'] a img::attr(alt)",
+    "ProductName": "div.ProductCard__productNameAndLogo__N28so h1 span::text",
+    "ProductImage": "div#galleryItem0 div picture img::attr(src)",
+    "ProductColor": "div.ColorVersionPhotoPicker__photoPickerSection__Xc-Yl div.ProductCard__photoPickerCurrent__VevNL span::text",
+    "CurrentPrice": "div.ProductCard__priceWrapper__HY49o div[data-test='regularPrice'] div.ProductCard__priceRegular__IhSyk::text",
+    "OldPrice": "div.ProductCard__priceRegularMinimalLabel__QxGuJ span:contains('EUR')::text",
+    "NoDiscountPrice": "span.ProductCard__percentageDiscountColorRed__OXokM::text",
+    "info": "main script[type='application/ld+json']::text",
+    "Department" : "ul.CategoriesSection__menuMainSection__v7NR0 a[data-test='selected_category']::text"
+  }
+}
