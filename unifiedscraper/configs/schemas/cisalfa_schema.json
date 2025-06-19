@@ -1,7 +1,7 @@
 {
   "brands_urls_schema" : "ul.cc-brands-list__list li.cc-brands-list__item a::attr(href)",
   "products_urls_schema" : "article.cc-plp__item div.cc-tile.product-tile a.cc-tile__url-absolute::attr(href)",
-  "pagination_schema" : "a.next",
+  "pagination_schema" : "link[rel='next']::attr(href)",
   "product_page_schema" : {
     "Brand": "div.cc-pdp__product-info span.cc-pdp__product-brand span[itemprop=\"name\"]::text",
     "ProductName": "div.cc-pdp__product-info span.cc-pdp__product-name::text",

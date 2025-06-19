@@ -1,6 +1,6 @@
 import re
 
-from .base_scraper import NextPageScraper, DataCleanser
+from .base_scraper import NextPageScraper, DataCleanser , LoadMoreScrapper
 
 
 class Cisalfa(NextPageScraper, DataCleanser):
