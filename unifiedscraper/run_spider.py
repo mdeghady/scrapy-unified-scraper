@@ -56,19 +56,40 @@ def concatenate_parquet_files(input_folder, output_file, delete_original=True):
 
 
 def get_current_output_folder(base_name=None):
-    """Get the current output folder path based on date and optional website name"""
-    year = datetime.now().year
-    month = datetime.now().month
-    day = datetime.now().day
+    """Get the current output folder path based on date and optional website name.
+    If today's folder doesn't exist, returns yesterday's folder path."""
+    from datetime import timedelta
+
+    today = datetime.now()
+    year = today.year
+    month = today.month
+    day = today.day
 
     if base_name:
         # If you want to include the website name
-        folder = Path(f"data/year={year}/month={month}/day={day}/website={base_name}")
+        today_folder = Path(f"data/year={year}/month={month}/day={day}/website={base_name}")
     else:
         # Just the date part
-        folder = Path(f"data/year={year}/month={month}/day={day}")
+        today_folder = Path(f"data/year={year}/month={month}/day={day}")
 
-    return str(folder.resolve())
+    # Check if today's folder exists
+    if today_folder.exists():
+        return str(today_folder.resolve())
+
+    # If today's folder doesn't exist, try yesterday's folder
+    yesterday = today - timedelta(days=1)
+    year_y = yesterday.year
+    month_y = yesterday.month
+    day_y = yesterday.day
+
+    if base_name:
+        yesterday_folder = Path(f"data/year={year_y}/month={month_y}/day={day_y}/website={base_name}")
+    else:
+        yesterday_folder = Path(f"data/year={year_y}/month={month_y}/day={day_y}")
+
+    # Return yesterday's folder path (whether it exists or not)
+    # If neither exists, the calling function will create the directory as needed
+    return str(yesterday_folder.resolve()) if yesterday_folder.exists() else str(today_folder.resolve())
 
 
 def get_scraped_item_count(output_folder):
