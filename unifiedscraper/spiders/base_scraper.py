@@ -13,10 +13,25 @@ class BaseScraper(scrapy.Spider , ABC):
     allowed_domains = None
     start_urls = None
 
+
+    custom_settings = {
+    'JOBDIR': f'crawls/{name}',
+    'MEMUSAGE_ENABLED': True,
+    'MEMUSAGE_LIMIT_MB': 1024,
+    'MEMUSAGE_WARNING_MB': 800,
+    'CLOSESPIDER_ITEMCOUNT': 50,  
+    'CLOSESPIDER_TIMEOUT': 600,  # Add timeout as safety 10 Minutes
+    }
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.config = self._load_config()
         self.schema = self._load_schema()
+
+        # Adding Persistent state management
+        self.pending_urls = []
+        self.state_file = Path(f'state/{self.name}.json')
+
 
     def _load_config(self):
         # Load the configuration file
@@ -108,7 +123,7 @@ class LoadMoreScrapper(BaseScraper):
         load_more_button = response.css(self.schema['pagination_schema'])
         if load_more_button:
             # Update the offset for the next request
-            if self.config['load_more_offset'] in response.url:
+            if str(self.config['load_more_offset']) in response.url:
                 cur_offset = response.meta.get('last_offset', 0) + self.config['load_more_offset']
             else:
                 # If the offset is not in the URL, set the offset to get the second page
@@ -136,14 +151,16 @@ class NextPageScraper(BaseScraper):
                         meta={'brand_url': response.meta['brand_url'],
                               "playwright": self.config.get('playwright' , False),})
 
-        # Check if there is a "Next Page" button
-        next_page_button = response.css(self.schema['pagination_schema']).get()
-        if next_page_button:
-            # Follow the URL to the next page
-            next_page_url = self.make_absolute_url(next_page_button)
-            yield response.follow(next_page_url,
-                                 callback=self.parse_site_products_page,
-                                 meta={'brand_url': response.meta['brand_url']})
+        
+        # Only check for next page if we haven't reached item limit
+        if not self.crawler.stats.get_value('closespider_itemcount_reached'):
+            # Check if there is a "Next Page" button
+            next_page_button = response.css(self.schema['pagination_schema']).get()
+            if next_page_button:
+                next_page_url = self.make_absolute_url(next_page_button)
+                yield response.follow(next_page_url,
+                                    callback=self.parse_site_products_page,
+                                    meta={'brand_url': response.meta['brand_url']})
 
 
 class DataCleanser():
