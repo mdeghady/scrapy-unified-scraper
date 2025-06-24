@@ -21,11 +21,12 @@ def concatenate_parquet_files(input_folder, output_file, delete_original=True):
     Returns:
         None
     """
-    # Get list of parquet files in the input folder
-    parquet_files = [f for f in Path(input_folder).glob('*.parquet') if f.is_file()]
+    # Get list of parquet files in the input folder (exclude combined.parquet)
+    parquet_files = [f for f in Path(input_folder).glob('*.parquet') 
+                     if f.is_file() and f.name != 'combined.parquet']
 
     if not parquet_files:
-        print(f"No parquet files found in {input_folder}")
+        print(f"No parquet files to concatenate in {input_folder}")
         return
 
     # Read schema from first file
@@ -56,40 +57,71 @@ def concatenate_parquet_files(input_folder, output_file, delete_original=True):
 
 
 def get_current_output_folder(base_name=None):
-    """Get the current output folder path based on date and optional website name.
-    If today's folder doesn't exist, returns yesterday's folder path."""
-    from datetime import timedelta
-
+    """Get the current output folder path based on date and optional website name."""
     today = datetime.now()
     year = today.year
     month = today.month
     day = today.day
 
     if base_name:
-        # If you want to include the website name
         today_folder = Path(f"data/year={year}/month={month}/day={day}/website={base_name}")
     else:
-        # Just the date part
         today_folder = Path(f"data/year={year}/month={month}/day={day}")
 
-    # Check if today's folder exists
-    if today_folder.exists():
-        return str(today_folder.resolve())
+    return str(today_folder.resolve())
 
-    # If today's folder doesn't exist, try yesterday's folder
-    yesterday = today - timedelta(days=1)
-    year_y = yesterday.year
-    month_y = yesterday.month
-    day_y = yesterday.day
+
+def get_previous_day_folder(base_name=None):
+    """Get the previous day's output folder path."""
+    from datetime import timedelta
+    
+    yesterday = datetime.now() - timedelta(days=1)
+    year = yesterday.year
+    month = yesterday.month
+    day = yesterday.day
 
     if base_name:
-        yesterday_folder = Path(f"data/year={year_y}/month={month_y}/day={day_y}/website={base_name}")
+        yesterday_folder = Path(f"data/year={year}/month={month}/day={day}/website={base_name}")
     else:
-        yesterday_folder = Path(f"data/year={year_y}/month={month_y}/day={day_y}")
+        yesterday_folder = Path(f"data/year={year}/month={month}/day={day}")
 
-    # Return yesterday's folder path (whether it exists or not)
-    # If neither exists, the calling function will create the directory as needed
-    return str(yesterday_folder.resolve()) if yesterday_folder.exists() else str(today_folder.resolve())
+    return str(yesterday_folder.resolve())
+
+
+def consolidate_previous_day_data(website):
+    """
+    Check if there's data from the previous day that needs to be consolidated.
+    If so, concatenate all parquet files from the previous day.
+    
+    Args:
+        website (str): Name of the spider/website
+    """
+    previous_folder = get_previous_day_folder(website)
+    previous_path = Path(previous_folder)
+    
+    if not previous_path.exists():
+        print(f"No previous day folder found at {previous_folder}")
+        return
+    
+    # Check if there are individual parquet files (not already consolidated)
+    individual_files = [f for f in previous_path.glob('*.parquet') 
+                       if f.is_file() and f.name != 'combined.parquet']
+    
+    if not individual_files:
+        print(f"No individual parquet files to consolidate in {previous_folder}")
+        return
+    
+    print(f"Found {len(individual_files)} parquet files from previous day. Consolidating...")
+    
+    # Concatenate the files
+    combined_file = previous_path / 'combined.parquet'
+    concatenate_parquet_files(
+        input_folder=previous_folder,
+        output_file=str(combined_file),
+        delete_original=True
+    )
+    
+    print(f"Previous day's data consolidated into {combined_file}")
 
 
 def get_scraped_item_count(output_folder):
@@ -149,15 +181,44 @@ def run_spider_in_batches(website, batch_size=1, max_batches=None, wait_time=50,
         max_empty_batches (int): Maximum consecutive batches with no new items before stopping
         min_items_threshold (int): Minimum items required in a batch to continue
     """
+    # First, consolidate any data from the previous day
+    print("Checking for previous day's data to consolidate...")
+    consolidate_previous_day_data(website)
+    
     batch_count = 0
     empty_batch_count = 0
     output_folder = get_current_output_folder(website)
     last_total_items = 0
+    current_day = datetime.now().day  # Track the current day
 
     # Ensure output folder exists
     os.makedirs(output_folder, exist_ok=True)
 
     while True:
+        # Check if we've moved to a new day
+        if datetime.now().day != current_day:
+            print("Day has changed! Consolidating previous day's data...")
+            # Get the folder from the day we were just working on
+            old_day_folder = output_folder
+            
+            # Consolidate the data from the previous day
+            parquet_files = [f for f in Path(old_day_folder).glob('*.parquet') 
+                           if f.is_file() and f.name != 'combined.parquet']
+            if parquet_files:
+                combined_file = Path(old_day_folder) / 'combined.parquet'
+                concatenate_parquet_files(
+                    input_folder=old_day_folder,
+                    output_file=str(combined_file),
+                    delete_original=True
+                )
+            
+            # Update to new day's folder
+            current_day = datetime.now().day
+            output_folder = get_current_output_folder(website)
+            os.makedirs(output_folder, exist_ok=True)
+            last_total_items = 0  # Reset count for new day
+            print(f"Switched to new day's folder: {output_folder}")
+
         if max_batches and batch_count >= max_batches:
             print(f"Reached maximum batches limit: {max_batches}")
             break
@@ -216,19 +277,20 @@ def run_spider_in_batches(website, batch_size=1, max_batches=None, wait_time=50,
             sleep(wait_time)
 
     print(f"\nScraping completed after {batch_count} batches")
-    print(f"Total items scraped: {get_scraped_item_count(output_folder)}")
+    print(f"Total items scraped today: {get_scraped_item_count(output_folder)}")
 
-    # Concatenate all the parquet files at the end
-    parquet_files = list(Path(output_folder).glob('*.parquet'))
+    # Concatenate all the parquet files from the current day at the end
+    parquet_files = [f for f in Path(output_folder).glob('*.parquet') 
+                     if f.is_file() and f.name != 'combined.parquet']
     if parquet_files:
-        print("Concatenating parquet files...")
+        print("Concatenating today's parquet files...")
         concatenate_parquet_files(
             input_folder=output_folder,
             output_file=f"{output_folder}/combined.parquet",
             delete_original=True
         )
     else:
-        print("No parquet files found to concatenate")
+        print("No parquet files found to concatenate for today")
 
 
 if __name__ == '__main__':
