@@ -38,6 +38,6 @@ class GocciaMen(NextPageScraper, DataCleanser):
             re.search(r'[\d,]+', product['CurrentPrice']).group().replace(",", "."))
 
         product_code_splitted = product['ProductCode'].split('-')
-        product["Color"] = product_code_splitted[1] if len(product_code_splitted) > 1 else None
+        product["ProductColor"] = product_code_splitted[1] if len(product_code_splitted) > 1 else None
 
         yield product

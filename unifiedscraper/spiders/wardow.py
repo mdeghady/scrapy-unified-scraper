@@ -32,6 +32,7 @@ class Wardow(NextPageScraper, DataCleanser):
         product['Brand'] = product['Brand'].replace("\n" , "").strip()
         product['Category'] = product['Brand'].replace("\n", "").strip()
         product['WebCode'] = product['WebCode'][-1].replace("\n", "").strip() if product['WebCode'] else None
+        product['WebCode'] = str(product['WebCode']) if product['WebCode'] else None
 
 
 
@@ -44,7 +45,7 @@ class Wardow(NextPageScraper, DataCleanser):
                 re.search(r'[\d,]+', product['CurrentPrice']).group().replace(',', '.'))
             product['OriginalPrice'] = float(
                 re.search(r'[\d,]+', product['OriginalPrice']).group().replace(',', '.'))
-
+        product.pop('NoDiscountPrice')
         description = {}
         
         # Extract key-value pairs from description-general

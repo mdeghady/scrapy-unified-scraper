@@ -46,9 +46,9 @@ class Evolution(NextPageScraper , DataCleanser):
         try:
             product_details = json.loads(product.pop('ProductDetails'))
             product['ProductColor'] = product_details.get('color')
-            product['Availability'] = product_details['offers']['offers'][0]['availability']
+            product['StockAvailability'] = product_details['offers']['offers'][0]['StockAvailability']
         except:
             product['ProductColor'] = None
-            product['Availability'] = None
+            product['StockAvailability'] = None
 
         yield product
