@@ -32,30 +32,41 @@ def concatenate_parquet_files(input_folder, output_file, delete_original=True):
     print(f"Found {len(parquet_files)} parquet files to concatenate in {input_folder}")
 
     # Read schema from first file
-    first_file = pq.read_table(parquet_files[0], memory_map=True)
-    schema = first_file.schema
-
-    # Create a Parquet writer with the same schema
-    writer = pq.ParquetWriter(output_file, schema)
+    # Initialize with first file
+    first_table = pq.read_table(parquet_files[0], memory_map=True)
+    writer = pq.ParquetWriter(output_file, first_table.schema)
 
     try:
-        # Process files one by one to minimize memory usage
         for file_path in parquet_files:
-            # Use memory_map to avoid loading entire file into memory
-            table = pq.read_table(file_path, memory_map=True)
-            writer.write_table(table)
+            try:
+                table = pq.read_table(file_path, memory_map=True)
+                
+                # Convert binary columns to string if needed
+                for i in range(table.num_columns):
+                    col_name = table.column_names[i]
+                    if str(table.schema.types[i]) == 'binary':
+                        table = table.set_column(
+                            i,
+                            col_name,
+                            table.column(i).cast('string')
+                        )
+                
+                writer.write_table(table)
 
-            if delete_original:
-                os.remove(file_path)
-                print(f"Processed and deleted {file_path}")
-            else:
-                print(f"Processed {file_path}")
+                if delete_original:
+                    os.remove(file_path)
+                    print(f"Processed and deleted {file_path}")
+                else:
+                    print(f"Processed {file_path}")
+                    
+            except Exception as e:
+                print(f"Error processing {file_path}: {str(e)}")
+                continue
 
     finally:
-        # Ensure the writer is closed properly
         writer.close()
 
-    print(f"Successfully concatenated {len(parquet_files)} files into {output_file}")
+    print(f"Successfully concatenated files into {output_file}")
 
 
 def get_current_output_folder(base_name=None):
