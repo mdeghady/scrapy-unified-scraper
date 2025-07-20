@@ -23,6 +23,7 @@ class Viglie(NextPageScraper , DataCleanser):
             "AvailableSizes": response.css(product_schema['AvailableSizes']).getall(),
             "Category": response.css(product_schema['Category']).get(),
             "sku": response.css(product_schema['sku']).get(),
+            "Department": response.css(product_schema['Department']).get(), 
             "ProductURL": response.url,
             "StockAvailability" : response.css(product_schema['StockAvailability']).get()
         }
@@ -31,7 +32,7 @@ class Viglie(NextPageScraper , DataCleanser):
         product['ProductName'] = product['ProductName'].replace("\n" , "").strip()
         product['StockAvailability'] = product['StockAvailability'].replace("\n" , "").strip()
 
-        product["ProductCode"] = product['sku'].split('-')[0]
+        product["ProductCode"] = product['sku']
 
         product['CurrentPrice'] = float(
             re.search(r'[\d.]+', product['CurrentPrice']).group())

@@ -38,13 +38,13 @@ class Wardow(NextPageScraper, DataCleanser):
 
         if product['NoDiscountPrice']:
             product['CurrentPrice'] = float(
-            re.search(r'[\d,]+', product['NoDiscountPrice']).group().replace(',', '.'))
+            re.search(r'[\d.,]+', product['NoDiscountPrice']).group().replace('.' , "").replace(',', '.'))
             product['OriginalPrice'] = product['CurrentPrice']
         else:
             product['CurrentPrice'] = float(
-                re.search(r'[\d,]+', product['CurrentPrice']).group().replace(',', '.'))
+                re.search(r'[\d.,]+', product['CurrentPrice']).group().replace('.' , "").replace(',', '.'))
             product['OriginalPrice'] = float(
-                re.search(r'[\d,]+', product['OriginalPrice']).group().replace(',', '.'))
+                re.search(r'[\d.,]+', product['OriginalPrice']).group().replace('.' , "").replace(',', '.'))
         product.pop('NoDiscountPrice')
         description = {}
         

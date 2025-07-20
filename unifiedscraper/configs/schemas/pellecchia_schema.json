@@ -8,7 +8,7 @@
         "Brand": "div.txt h1::text",
         "ProductName": "div.txt h2::text",
         "ProductImage": "div.imgb a[data-fancybox=\"gallery\"]::attr(href)",
-        "SkuCode": "div.txt h6::text",
+        "SkuCode": "div.txt h6:contains('SKU')::text",
         "CurrentPrice": "h3.price em::text",
         "OldPrice": "h3.price del::text",
         "AvailableSizes": "div#cart_section div#taglia_wrap a::text",

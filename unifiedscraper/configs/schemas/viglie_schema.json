@@ -12,7 +12,8 @@
     "PriceCurrency" : "div.product-prices meta[itemprop=\"priceCurrency\"]::attr(content)",
     "AvailableSizes": "div.clearfix.product-variants-item.col-md-12 ul#group_37 li.avaible span::text",
     "Category" : "nav.breadcrumb ol li:nth-last-child(2) a span::text",
-    "sku": "div.product-description section div div:nth-child(2) div div div.col-xs-9::text",
+    "sku": "section#main meta[itemprop='sku']::attr(content)",
+    "Department" : "div.line_features:contains('PERSONA')  div.col-xs-9::text",
     "StockAvailability" : "div.product-details-custom div#product-availability :first-child::text"
   }
 }
