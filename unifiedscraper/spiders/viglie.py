@@ -35,11 +35,11 @@ class Viglie(NextPageScraper , DataCleanser):
         product["ProductCode"] = product['sku']
 
         product['CurrentPrice'] = float(
-            re.search(r'[\d.]+', product['CurrentPrice']).group())
+            re.search(r'[\d.,]+', product['CurrentPrice']).group().replace('.' , "").replace(',', '.'))
         
         if product['OriginalPrice']:
             product['OriginalPrice'] = float(
-                re.search(r'[\d.]+', product['OriginalPrice']).group())
+                re.search(r'[\d.,]+', product['OriginalPrice']).group().replace('.' , "").replace(',', '.'))
         else:
             product['OriginalPrice'] = product['CurrentPrice']
 
