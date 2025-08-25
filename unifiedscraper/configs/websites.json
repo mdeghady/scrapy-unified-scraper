@@ -90,6 +90,12 @@
       "brands_url": "/marche/bambini",
       "pagination_type": "next_page_button",
       "schema_path": "configs/schemas/answear_schema.json"
+  },
+  "gomez": {
+      "base_url": "https://gomez.moda/it",
+      "brands_url": "/brand",
+      "pagination_type": "next_page_button",
+      "schema_path": "configs/schemas/answear_schema.json"
   }
 
 }
