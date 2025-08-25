@@ -28,11 +28,8 @@ class TendenzeSpider(NextPageScraper,DataCleanser):
         if not available_sizes:
             available_sizes = response.css(product_schema['AvailableSizes.option2']).getall()
         product['AvailableSizes'] = available_sizes
-        product["sku"]  = product["sku"].split(" ")[-1]
-        sku_splitted = product["sku"].split("/")
-        product['ProductCode'] = sku_splitted[0]
-        product['ProductColor'] = sku_splitted[1] if len(sku_splitted) > 1 else ""
-
+        product["sku"]  = product["sku"].replace("Art." , " ").strip()
+        
         discount_price = response.css(product_schema['CurrentPrice']).get()
         if discount_price:
             product['CurrentPrice'] = discount_price

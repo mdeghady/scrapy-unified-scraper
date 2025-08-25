@@ -30,11 +30,11 @@ class Progetto(NextPageScraper , DataCleanser):
         # Clean the data
         product["PriceCurrency"] = self._convert_currency_symbols_to_code(product["CurrentPrice"])
         product['CurrentPrice'] = float(
-            re.search(r'[\d,]+', product['CurrentPrice']).group().replace(',', '.'))
+            re.search(r'[\d.,]+', product['CurrentPrice']).group().replace('.' , "").replace(',', '.'))
 
         if product['OriginalPrice']:
             product['OriginalPrice'] = float(
-                re.search(r'[\d,]+', product['OriginalPrice']).group().replace(',', '.'))
+                re.search(r'[\d.,]+', product['OriginalPrice']).group().replace('.' , "").replace(',', '.'))
         else:
             product['OriginalPrice'] = product['CurrentPrice']
 
